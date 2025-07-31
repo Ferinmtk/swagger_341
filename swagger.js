@@ -7,9 +7,25 @@ const options = {
     info: {
       title: 'My CRUD API',
       version: '1.0.0',
+      description: 'This API supports CRUD operations with JWT-based authentication.',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          description: 'Enter your bearer token in the format **Bearer &lt;token&gt;**',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ['./routes/*.js'], // scans route files for Swagger comments
+  apis: ['./routes/*.js'], // or wherever your route files are
 };
 
 const swaggerSpec = swaggerJsdoc(options);
